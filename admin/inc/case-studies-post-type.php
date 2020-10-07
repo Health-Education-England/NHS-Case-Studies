@@ -1,5 +1,11 @@
 <?php
 
+namespace NHS_CASESTUDIES\ADMIN\CustomPostType;
+
+
+add_action( 'init', __NAMESPACE__ . '\create_case_studies_post_type' );
+
+
 function create_case_studies_post_type() {
     
     $case_studies_labels = array(
@@ -41,4 +47,3 @@ function create_case_studies_post_type() {
 
     register_post_type( 'case-studies', $case_studies_args );
 }
-add_action( 'init', 'create_case_studies_post_type' );

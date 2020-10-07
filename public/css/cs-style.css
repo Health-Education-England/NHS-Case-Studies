@@ -1,0 +1,15 @@
+.single-case-studies .nhsuk-image{
+	float: left;
+	margin: 0 20px 20px 0;
+	width: 33%;
+}
+
+.single-case-studies #secondary{
+	margin-top: 60px;
+}
+
+.single-case-studies #secondary section{
+	background-color: #fff;
+	padding: 32px;
+	border-top: none;
+}

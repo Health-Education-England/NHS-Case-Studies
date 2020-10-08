@@ -33,3 +33,17 @@ require_once 'inc/case-studies-title.php';
  */
 
 require_once 'inc/case-study-after.php';
+
+
+/**
+ * Load Case Studies Scripts and Styles
+ */
+
+require_once 'inc/case-studies-scripts.php';
+
+
+/**
+ * Load Case Studies dynamic blocks
+ */
+
+require_once 'inc/case-studies-blocks.php';

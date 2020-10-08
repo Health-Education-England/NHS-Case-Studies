@@ -13,3 +13,10 @@
 	padding: 32px;
 	border-top: none;
 }
+
+.single-case-studies article h2,
+.single-case-studies article h3,
+.single-case-studies article h4,
+.single-case-studies article h5{
+	display: inline-block;
+}

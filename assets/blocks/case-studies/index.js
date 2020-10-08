@@ -9,59 +9,172 @@
  */
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
-const { RichText } = wp.editor;
+
+const { 
+    RichText,
+    URLInputButton,
+    InspectorControls
+} = wp.blockEditor;
+
+const { 
+    Spinner,
+    SelectControl,
+    PanelBody,
+    PanelRow,
+    TextControl,
+    Disabled
+} = wp.components;
+
+const {
+    Fragment
+} = wp.element;
+
+const {
+    select,
+    withSelect
+} = wp.data;
+
+const { serverSideRender: ServerSideRender } = wp;
 
 /**
  * Register block
  */
 export default registerBlockType(
-    'nhs_cs/casestudies',
+    'nhs-cs/casestudies',
     {
-        title: __( 'Example - RichText', 'nhs_cs' ),
+        title: __( 'Case Studies Cards', 'nhs_cs' ),
         description: __( 'How to use the RichText component for building your own editable blocks.', 'nhs_cs' ),
         category: 'common',
-        icon: {
-            background: 'rgba(254, 243, 224, 0.52)',
-            src: 'welcome-learn-more',
-        },   
+        icon: 'welcome-learn-more',  
         keywords: [
-            __( 'Banner', 'nhs_cs' ),
-            __( 'Call to Action', 'nhs_cs' ),
-            __( 'Message', 'nhs_cs' ),
+            __( 'Casestudies card nursing', 'nhs_cs' ),
         ],
         attributes: {
-            message: {
-                type: 'array',
-                source: 'children',
-                selector: '.message-body',
+            tax: {
+                type: 'string'
+            },
+            title: {
+                type: 'string',
+                default: __( 'Latest Case Studies', 'nhs_cs' )
+            },
+            url: {
+                type: 'string'
+            },
+            urlTxt: {
+                type: 'string',
+                default: __( 'View all Case Studies', 'nhs_cs' )
             }
         },
-        edit: props => {
-            const { attributes: { message }, className, setAttributes } = props;
-            const onChangeMessage = message => { setAttributes( { message } ) };
-            return (
+        edit: withSelect( ( select, ownProps ) => {
+
+            let parent_query = {
+                'parent'     : 0,
+                'hide_empty' : false,
+                'per_page'   : -1
+            }
+
+            return {
+                    taxonomies: select('core').getEntityRecords('taxonomy', 'cs_categories', parent_query )
+                };
+            } )( ( { taxonomies, className, setAttributes, clientId, attributes: { tax, title, url, urlTxt } } ) => {
+
+
+            const taxList = ( taxonomies ) =>{
+
+                if( taxonomies ){
+
+                    let selectItem = [ { label: 'All Case Studies', value: 0 } ];
+
+                    taxonomies.map((term, index) => {
+                        selectItem.push( { label: term.name, value: term.id } )
+                    })
+
+                    return selectItem;
+
+                }
+            }
+
+            return [
+                <InspectorControls>                    
+
+                    { ! taxonomies ? (
+                            
+                            <Spinner />
+
+                    ):(
+
+                     <PanelBody>
+
+                        <PanelRow>
+
+                            <SelectControl
+                                label="Case Studies Category"
+                                value={ tax }
+                                onChange={ ( tax ) => { setAttributes( { tax } ) } }
+                                options={ taxList( taxonomies ) }
+                            />
+                        </PanelRow>
+                        <PanelRow>
+
+                            <SelectControl
+                                label="Case Studies Link"
+                                value={ url }
+                                onChange={ ( url ) => { setAttributes( { url } ) } }
+                                options={ taxList( taxonomies ) }
+                            />
+                        </PanelRow>
+
+                    </PanelBody>
+                    
+                    )}
+                    
+                </InspectorControls>,
                 <div className={ className }>
-                    <h2>{ __( 'Call to Action', 'nhs_cs' ) }</h2>
+
                     <RichText
-                        tagName="div"
-                        multiline="p"
-                        placeholder={ __( 'Add your custom message', 'nhs_cs' ) }
-                  		onChange={ onChangeMessage }
-                  		value={ message }
-              		/>
-                </div>
-            );
-        },
-        save: props => {
-            const { attributes: { message } } = props;
-            return (
-                <div>
-                    <h2>{ __( 'Call to Action', 'nhs_cs' ) }</h2>
-                    <div class="message-body">
-                        { message }
+                        tagName="h2"
+                        value={ title }
+                        onChange={ ( title ) => setAttributes( { title } ) }
+                    />
+
+                    <Disabled>
+
+                        <ServerSideRender
+                            block="nhs-cs/casestudies"
+                            attributes={ {
+                                'tax': tax,
+                                'title': title,
+                                'backend': true
+                            } }
+                        />
+
+                    </Disabled>
+
+                    
+                    <div className="nhsuk-action-link text-center">
+
+
+                        <a className="nhsuk-action-link__link">
+                            <svg className="nhsuk-icon nhsuk-icon__arrow-right-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M12 2a10 10 0 0 0-9.95 9h11.64L9.74 7.05a1 1 0 0 1 1.41-1.41l5.66 5.65a1 1 0 0 1 0 1.42l-5.66 5.65a1 1 0 0 1-1.41 0 1 1 0 0 1 0-1.41L13.69 13H2.05A10 10 0 1 0 12 2z"></path>
+                            </svg>
+                            <RichText
+                                tagName="span"
+                                className="nhsuk-action-link__text"
+                                value={ urlTxt }
+                                onChange={ ( urlTxt ) => setAttributes( { urlTxt } ) }
+                            />
+                        </a>
                     </div>
+
+
                 </div>
-            );
+            ];
+        }),
+        save: props => {
+            const { attributes } = props;
+            return null;
         },
     },
 );

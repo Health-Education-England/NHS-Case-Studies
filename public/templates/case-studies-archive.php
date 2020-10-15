@@ -12,6 +12,17 @@ get_header();
 ?>
 
 <div id="primary" class=" nhsuk-grid-row">
+
+    <div class="case-studies
+
+    <?php
+        if ( \NHS_CASESTUDIES\ADMIN\Custom_Sidebar\nhs_cs_show_sidebar() ) :
+            echo 'nhsuk-grid-column-two-thirds ';
+            echo nightingale_sidebar_location( 'case-studies' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+        endif;
+     ?>
+    ">
+
     <header class="page-header">
 
         <?php the_archive_title( '<h1 class="page-title">', '</h1>' ); ?>
@@ -20,8 +31,8 @@ get_header();
     </header><!-- .page-header -->
 
 
-
     <?php if ( have_posts() ) : ?>
+
 
 
     	<?php
@@ -58,8 +69,13 @@ get_header();
 
             <hr />
 
-        <?php
-        endwhile;
+        <?php endwhile; ?>
+
+        </div>
+
+
+        <?php include 'case-studies-sidebar.php';
+             
 
         if ( function_exists( 'nightingale_archive_pagination' ) ):
 
@@ -73,6 +89,8 @@ get_header();
 
 
     endif; ?>
+
+
 
 </div>
 

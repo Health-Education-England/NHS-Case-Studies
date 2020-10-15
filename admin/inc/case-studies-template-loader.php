@@ -12,8 +12,15 @@ function faq_template( $template ) {
  		
 		return \NHS_CASESTUDIES\SetUp\get_plugin_directory() . '/public/templates/case-studies-archive.php';
 
+  	}
+  	elseif( is_singular('case-studies') ){
+
+  		return \NHS_CASESTUDIES\SetUp\get_plugin_directory() . '/public/templates/case-studies-single.php';
+
   	}else{
+
   		return $template;
+  		
   	}
 
 	

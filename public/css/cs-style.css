@@ -4,19 +4,13 @@
 	width: 33%;
 }
 
-.single-case-studies #secondary{
-	margin-top: 60px;
-}
-
-.single-case-studies #secondary section{
-	background-color: #fff;
-	padding: 32px;
-	border-top: none;
-}
-
 .single-case-studies article h2,
 .single-case-studies article h3,
 .single-case-studies article h4,
 .single-case-studies article h5{
 	display: inline-block;
+}
+
+body.case-studies-sidebar .case-study-archive{
+	display: flex;
 }

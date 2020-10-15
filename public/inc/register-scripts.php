@@ -20,5 +20,15 @@ function register_scripts(){
 	    );
 	}
 
+	if( has_block( 'nhs-cs/casestudies' ) ){
+
+		wp_enqueue_style( 
+	        'nhs_casestudy_cards',  
+	        \NHS_CASESTUDIES\SetUp\get_plugin_url() . $css_path . '/blocks.style.css',
+	        array(),
+	        filemtime( \NHS_CASESTUDIES\SetUp\get_plugin_directory() . $css_path . '/blocks.style.css' )
+	    );
+	}
+
 
 }

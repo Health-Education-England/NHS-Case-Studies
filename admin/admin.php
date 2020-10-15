@@ -29,13 +29,6 @@ require_once 'inc/case-studies-title.php';
 
 
 /**
- * Load Case Studies Add Widget Area
- */
-
-require_once 'inc/case-study-after.php';
-
-
-/**
  * Load Case Studies Scripts and Styles
  */
 
@@ -47,3 +40,18 @@ require_once 'inc/case-studies-scripts.php';
  */
 
 require_once 'inc/case-studies-blocks.php';
+
+
+/**
+ * Case Studies Sidebar
+ */
+
+require_once 'inc/case-studies-sidebar.php';
+
+
+
+/**
+ * Case Studies Customizer
+ */
+
+require_once 'inc/case-studies-customizer.php';

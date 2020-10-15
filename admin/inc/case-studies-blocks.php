@@ -1,40 +1,46 @@
 <?php
 
+add_action( 'init', 'case_studies_block' );
 
-$blocks = [
-	'nhs-cs/casestudies'
-];
+function case_studies_block(){
 
-foreach ( $blocks as $block ):
+	$blocks = [
+		'nhs-cs/casestudies'
+	];
 
-	register_block_type(
-		$block,
-		array(
-			'attributes'      => array(
-				'tax'    => array(
-					'type' => 'number',
-				),
-				'title'     => array(
-					'type' => 'string',
-				),
-				'backend'  => array(
-					'type' => 'boolean',
-				),
-				'url'     => array(
-					'type' => 'string',
-				),
-				'urlTxt'     => array(
-					'type' => 'string',
-				),
-			),
-			'render_callback' => function( array $attributes, string $content = null ) use ( $block ) {
+	foreach ( $blocks as $block ):
 
-			return template_part_block_renderer( $block, $attributes, $content );
-			},
-		)
-	);
+		register_block_type(
+			$block,
+			array(
+				'attributes'      => array(
+					'tax'    => array(
+						'type' => 'number',
+					),
+					'title'     => array(
+						'type' => 'string',
+					),
+					'backend'  => array(
+						'type' => 'boolean',
+					),
+					'url'     => array(
+						'type' => 'string',
+					),
+					'urlTxt'     => array(
+						'type' => 'string',
+					),
+				),
+				'render_callback' => function( array $attributes, string $content = null ) use ( $block ) {
 
-endforeach;
+				return template_part_block_renderer( $block, $attributes, $content );
+				},
+			)
+		);
+
+	endforeach;
+
+}
+
 
 
 

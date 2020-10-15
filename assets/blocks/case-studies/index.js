@@ -2,7 +2,7 @@
  * Block dependencies
  */
 // import icon from './icon';
-// import './style.scss';
+import './style.scss';
 
 /**
  * Internal block libraries
@@ -57,6 +57,9 @@ export default registerBlockType(
                 type: 'string',
                 default: __( 'Latest Case Studies', 'nhs_cs' )
             },
+            backend: {
+                type: 'boolean'
+            },
             url: {
                 type: 'string'
             },
@@ -74,9 +77,10 @@ export default registerBlockType(
             }
 
             return {
-                    taxonomies: select('core').getEntityRecords('taxonomy', 'cs_categories', parent_query )
-                };
+                taxonomies: select('core').getEntityRecords('taxonomy', 'cs_categories', parent_query )
+            }
             } )( ( { taxonomies, className, setAttributes, clientId, attributes: { tax, title, url, urlTxt } } ) => {
+
 
 
             const taxList = ( taxonomies ) =>{
@@ -144,7 +148,9 @@ export default registerBlockType(
                             attributes={ {
                                 'tax': tax,
                                 'title': title,
-                                'backend': true
+                                'backend': true,
+                                'url': url,
+                                'urlTxt' : urlTxt
                             } }
                         />
 

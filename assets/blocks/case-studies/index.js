@@ -90,7 +90,11 @@ export default registerBlockType(
                     let selectItem = [ { label: 'All Case Studies', value: 0 } ];
 
                     taxonomies.map((term, index) => {
-                        selectItem.push( { label: term.name, value: term.id } )
+
+                        if( term.count > 0 ){
+                            selectItem.push( { label: term.name, value: term.id } )
+                        }
+                        
                     })
 
                     return selectItem;

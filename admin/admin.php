@@ -62,3 +62,9 @@ require_once 'inc/case-studies-customizer.php';
  */
 
 require_once 'inc/case-studies-screen-options.php';
+
+/**
+ * Admin notice if Nighingale and NHS Plugins not installed
+ */
+
+require_once 'inc/case-studies-admin-notice.php';

@@ -55,3 +55,10 @@ require_once 'inc/case-studies-sidebar.php';
  */
 
 require_once 'inc/case-studies-customizer.php';
+
+
+/**
+ * Case Studies Screen Option
+ */
+
+require_once 'inc/case-studies-screen-options.php';

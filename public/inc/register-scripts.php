@@ -14,9 +14,9 @@ function register_scripts(){
 
 	    wp_enqueue_style( 
 	        'nhs_casestudies_css',  
-	        \NHS_CASESTUDIES\SetUp\get_plugin_url() . $css_path . '/cs-style.css',
+	        \NHS_CASESTUDIES\SetUp\get_plugin_url() . $css_path . '/style.css',
 	        array(),
-	        filemtime( \NHS_CASESTUDIES\SetUp\get_plugin_directory() . $css_path . '/cs-style.css' )
+	        filemtime( \NHS_CASESTUDIES\SetUp\get_plugin_directory() . $css_path . '/style.css' )
 	    );
 	}
 

@@ -8,35 +8,38 @@ add_action('init', __NAMESPACE__ . '\change_user_options', 30 );
 
 function change_user_options(){
 
-	$all_users = get_users();
-	$tax_options = array( 'add-cs_categories' );
+	if( is_admin() ){
 
-	foreach ( $all_users as $key => $user ):
+		$all_users = get_users();
+		$tax_options = array( 'add-cs_categories' );
 
-		// make sure user can edit menues
+		foreach ( $all_users as $key => $user ):
 
-		if( user_can( $user->ID,  'edit_theme_options' ) ):
+			// make sure user can edit menues
+
+			if( user_can( $user->ID,  'edit_theme_options' ) ):
 
 
-			$hidden_meta_boxes = get_user_option( 'metaboxhidden_nav-menus' );
+				$hidden_meta_boxes = get_user_option( 'metaboxhidden_nav-menus' );
 
 
-			foreach ( $hidden_meta_boxes as $key => $option ):
+				foreach ( $hidden_meta_boxes as $key => $option ):
 
-				if( in_array( $hidden_meta_boxes, $tax_options ) ):
+					if( in_array( $hidden_meta_boxes, $tax_options ) ):
 
-					// unset the custom taxonomy from the menu hidden array
+						// unset the custom taxonomy from the menu hidden array
 
-					unset( $hidden_meta_boxes[ $key ] );
+						unset( $hidden_meta_boxes[ $key ] );
 
-				endif;
+					endif;
 
-			endforeach;
+				endforeach;
 
-			update_user_option( $user->ID, 'metaboxhidden_nav-menus', $hidden_meta_boxes, true );
+				update_user_option( $user->ID, 'metaboxhidden_nav-menus', $hidden_meta_boxes, true );
 
-		endif;
+			endif;
 
-	endforeach;
+		endforeach;
+	}
 	
 }

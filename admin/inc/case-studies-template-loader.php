@@ -3,9 +3,9 @@
 namespace NHS_CASESTUDIES\ADMIN\Template_Loader;
 
 
-add_filter('template_include',  __NAMESPACE__ . '\faq_template');
+add_filter('template_include',  __NAMESPACE__ . '\case_studies_template');
 
-function faq_template( $template ) {
+function case_studies_template( $template ) {
 
 
   	if ( is_post_type_archive('case-studies') || is_tax('cs_categories') ) {

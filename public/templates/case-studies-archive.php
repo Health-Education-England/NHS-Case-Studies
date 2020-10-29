@@ -46,7 +46,7 @@ get_header();
 
                 <?php if (has_post_thumbnail()): ?>
                 <div class="nhsuk-grid-column-one-third">
-                        <?php the_post_thumbnail(); ?>
+                        <?php the_post_thumbnail( 'post-thumbnail', array( 'class' => 'case-studies-portrait' ) ); ?>
                     </div>
                 <?php endif; ?>
 
@@ -71,13 +71,7 @@ get_header();
 
         <?php endwhile; ?>
 
-        </div>
-
-
-        <?php include 'case-studies-sidebar.php';
-             
-
-        if ( function_exists( 'nightingale_archive_pagination' ) ):
+        <?php if ( function_exists( 'nightingale_archive_pagination' ) ):
 
             nightingale_archive_pagination();
 
@@ -86,6 +80,16 @@ get_header();
             posts_nav_link();
 
         endif;
+
+        ?>
+
+        </div>
+
+
+        <?php include 'case-studies-sidebar.php';
+             
+
+        
 
 
     endif; ?>

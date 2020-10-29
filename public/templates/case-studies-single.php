@@ -33,13 +33,15 @@ get_header();
 			endwhile; // End of the loop.
 			?>
 
+			<?php nightingale_get_prev_next(); ?>
+
 		</div>
 		
 		<?php include 'case-studies-sidebar.php'; ?>
 
 	</div><!-- #primary -->
 
-	<?php nightingale_get_prev_next(); ?>
+	
 
 
 <?php

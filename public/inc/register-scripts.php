@@ -10,7 +10,7 @@ function register_scripts(){
 
 	$css_path = '/public/css';
 
-	if( is_singular( 'case-studies' ) ){
+	if( is_singular( 'case-studies' ) || is_post_type_archive( 'case-studies' ) ){
 
 	    wp_enqueue_style( 
 	        'nhs_casestudies_css',  

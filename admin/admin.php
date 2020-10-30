@@ -68,3 +68,10 @@ require_once 'inc/case-studies-screen-options.php';
  */
 
 require_once 'inc/case-studies-admin-notice.php';
+
+
+/**
+ * Breadcrumb filter
+ */
+
+require_once 'inc/case-studies-breadcrumbs.php';

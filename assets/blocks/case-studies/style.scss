@@ -1,3 +1,10 @@
 .case-studies-cards .nhsuk-grid-column-one-third{
 	display: flex !important;
 }
+
+.case-studies-cards {
+	.nhsuk-promo .nhsuk-promo__content .nhsuk-promo__heading,
+	.nhsuk-promo .nhsuk-promo__content .nhsuk-promo__description{
+		padding: 24px;
+	}
+}

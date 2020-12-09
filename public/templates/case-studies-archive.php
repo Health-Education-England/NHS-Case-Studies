@@ -11,7 +11,7 @@
 get_header();
 ?>
 
-<div id="primary" class=" nhsuk-grid-row">
+<div id="primary">
 
     <div class="case-studies
 
